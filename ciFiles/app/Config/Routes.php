@@ -40,6 +40,11 @@ $routes->get("notices-mgt","PageLoader::notices_mgt");
 $routes->get("add-new-notice","PageLoader::add_notice");
 $routes->get("edit-notice/(:any)","PageLoader::edit_notice/$1");
 
+// Employees
+$routes->get("employee-mgt","PageLoader::employee_mgt");
+$routes->get("add-new-employee","PageLoader::add_employee");
+$routes->get("edit-employee/(:any)","PageLoader::edit_employee/$1");
+
 // Auth EndPoints
 $routes->post("login-exe","Authentication::login");
 $routes->get("logout-exe","Authentication::logout");
@@ -48,6 +53,12 @@ $routes->get("logout-exe","Authentication::logout");
 $routes->post("create-notice-exe","Notices::create_notice_exe");
 $routes->post("delete-notice-exe","Notices::delete_notice_exe");
 $routes->post("update-notice-exe","Notices::update_notice_exe");
+
+// Employees
+$routes->post("create-employee-exe","Employees::create_employee_exe");
+$routes->post("delete-employee-exe","Employees::delete_employee_exe");
+$routes->post("update-employee-exe","Employees::update_employee_exe");
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

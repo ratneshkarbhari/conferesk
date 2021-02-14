@@ -28,7 +28,7 @@
                         <li><a class="waves-effect" href="<?php echo site_url(); ?>">Dashboard</a></li>
                         <li><a class="waves-effect" href="<?php echo site_url("notices-mgt"); ?>">Notices</a></li>
                         <li><a class="waves-effect" href="#!">Tasks</a></li>
-                        <li><a class="waves-effect" href="#!">Employees</a></li>
+                        <li><a class="waves-effect" href="<?php echo site_url("employee-mgt"); ?>">Employees</a></li>
                         <li><a class="waves-effect" href="#!">Logout</a></li>
                     </ul>
                     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>

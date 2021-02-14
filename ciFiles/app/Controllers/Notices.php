@@ -25,23 +25,33 @@ class Notices extends BaseController
             $slug= url_title($this->request->getPost("slug"),'-',TRUE);
         }
 
-        $objToInsert = array(
-            "title" => $this->request->getPost("title"),
-            "slug" => $slug,
-            "date" => $this->request->getPost("date"),
-            "body" => $this->request->getPost("body"),
-            "department" => $this->request->getPost("department"),
-            "link" => $this->request->getPost("link")
-        );
+        $noticeSlugExists = $noticeModel->where("slug",$slug)->first();
 
-        $created = $noticeModel->insert($objToInsert);
+        if ($noticeSlugExists) {
 
-        if ($created) {
-            $pageLoader->add_notice("New Notice Added","");
+            $pageLoader->add_notice("","A Notice with that slug already exists");
+            
         } else {
-            $pageLoader->add_notice("","Notice couldnt be created");
+
+            $objToInsert = array(
+                "title" => $this->request->getPost("title"),
+                "slug" => $slug,
+                "date" => $this->request->getPost("date"),
+                "body" => $this->request->getPost("body"),
+                "department" => $this->request->getPost("department"),
+                "link" => $this->request->getPost("link")
+            );
+    
+            $created = $noticeModel->insert($objToInsert);
+    
+            if ($created) {
+                $pageLoader->add_notice("New Notice Added","");
+            } else {
+                $pageLoader->add_notice("","Notice couldnt be created");
+            }
+    
+            
         }
-        
 
     }
 
@@ -97,23 +107,32 @@ class Notices extends BaseController
             $slug= url_title($this->request->getPost("slug"),'-',TRUE);
         }
 
-        $objToInsert = array(
-            "title" => $this->request->getPost("title"),
-            "slug" => $slug,
-            "date" => $this->request->getPost("date"),
-            "body" => $this->request->getPost("body"),
-            "department" => $this->request->getPost("department"),
-            "link" => $this->request->getPost("link")
-        );
+        $noticeSlugExists = $noticeModel->where("slug",$slug)->first();
 
-        $updated = $noticeModel->update($id,$objToInsert);
+        if ($noticeSlugExists&&$noticeSlugExists["id"]!=$id) {
 
-        if ($updated) {
-            $pageLoader->edit_notice($slug,"Notice Updated","");
+            $pageLoader->add_notice("","A Notice with that slug already exists");
+            
         } else {
-            $pageLoader->edit_notice($slug,"","Notice couldnt be updated");
+
+            $objToInsert = array(
+                "title" => $this->request->getPost("title"),
+                "slug" => $slug,
+                "date" => $this->request->getPost("date"),
+                "body" => $this->request->getPost("body"),
+                "department" => $this->request->getPost("department"),
+                "link" => $this->request->getPost("link")
+            );
+    
+            $updated = $noticeModel->update($id,$objToInsert);
+    
+            if ($updated) {
+                $pageLoader->edit_notice($slug,"Notice Updated","");
+            } else {
+                $pageLoader->edit_notice($slug,"","Notice couldnt be updated");
+            }
+            
         }
-        
 
     }
 
