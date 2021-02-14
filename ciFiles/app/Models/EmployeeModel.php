@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class AuthModel extends Model
+class EmployeeModel extends Model
 {
 
     protected $table = "users";

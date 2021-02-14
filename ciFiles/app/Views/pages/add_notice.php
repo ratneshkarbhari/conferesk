@@ -21,7 +21,7 @@
             </div>
             <div class="mb-3">
                 <label for="department">Department</label>
-                <select name="department" id="department" class="form-control">
+                <select name="department" id="department" >
                     <option value="general">General</option>
                     <option value="marketing">Marketing</option>
                     <option value="sales">Sales</option>

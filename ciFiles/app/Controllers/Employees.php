@@ -19,22 +19,39 @@ class Employees extends BaseController
         $pageLoader = new PageLoader();
         $employeeModel = new EmployeeModel();
 
-        $objToInsert = array(
-            "title" => $this->request->getPost("title"),
-            "slug" => $slug,
-            "date" => $this->request->getPost("date"),
-            "body" => $this->request->getPost("body"),
-            "department" => $this->request->getPost("department"),
-            "link" => $this->request->getPost("link")
-        );
+        $email = $this->request->getPost("email");
+        $role = $this->request->getPost("department");
 
-        $created = $noticeModel->insert($objToInsert);
-
-        if ($created) {
-            $pageLoader->add_notice("New Notice Added","");
+        $employeeExists = $employeeModel->where("email",$email)->where("role",$role)->first();
+        
+        if ($employeeExists) {
+            
+            $pageLoader->add_employee("","An Employee exists with the email you provided in the same department");
+            
         } else {
-            $pageLoader->add_notice("","Notice couldnt be created");
+
+            $objToInsert = array(
+                "fname" => $this->request->getPost("fname"),
+                "lname" => $this->request->getPost("lname"),
+                "email" => $email,
+                "password" => password_hash($this->request->getPost("password"),PASSWORD_DEFAULT),
+                "role" => $role,
+                "code" => uniqid(),
+                "status" => "active"
+            );
+    
+            $created = $employeeModel->insert($objToInsert);
+    
+            if ($created) {
+                $pageLoader->add_employee("New Employee Added","");
+            } else {
+                $pageLoader->add_employee("","Employee couldnt be created");
+            }
+     
+            
         }
+        
+
         
 
     }

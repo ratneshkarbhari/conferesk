@@ -133,9 +133,9 @@ class PageLoader extends BaseController
 			return redirect()->route('login');
 		}
 		
-		$data = array("title"=>"Add Notice","success"=>$success,"error"=>$error);
+		$data = array("title"=>"Add Employee","success"=>$success,"error"=>$error);
 
-		$this->page_loader("add_notice",$data);
+		$this->page_loader("add_employee",$data);
 		
 	}
 
@@ -149,9 +149,9 @@ class PageLoader extends BaseController
 			return redirect()->route('login');
 		}
 
-		$noticeModel = new \App\Models\NoticeModel();
+		$employeeModel = new \App\Models\EmployeeModel();
 
-		$notice = $noticeModel->where("slug",$slug)->first();
+		$employee = $employeeModel->where("id",$id)->first();
 		
 		$data = array("title"=>"Edit Notice","success"=>$success,"error"=>$error,"notice"=>$notice);
 

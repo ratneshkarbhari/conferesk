@@ -16,6 +16,15 @@
                 <input type="text" name="lname" id="lname" class="form-control">
             </div>
             <div class="mb-3">
+                <label for="department">Department</label>
+                <select name="department" id="department" >
+                    <option value="marketing">Marketing</option>
+                    <option value="sales">Sales</option>
+                    <option value="hr">Human Resource</option>
+                    <option value="design">Design</option>
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email" class="form-control">
             </div>
