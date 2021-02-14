@@ -136,10 +136,10 @@ class PageLoader extends BaseController
 		$data = array("title"=>"Add Employee","success"=>$success,"error"=>$error);
 
 		$this->page_loader("add_employee",$data);
-		
+			
 	}
 
-	public function edit_employee($slug,$success="",$error=""){
+	public function edit_employee($code,$success="",$error=""){
 		
 		$session = session();
 
@@ -149,13 +149,14 @@ class PageLoader extends BaseController
 			return redirect()->route('login');
 		}
 
+
 		$employeeModel = new \App\Models\EmployeeModel();
 
-		$employee = $employeeModel->where("id",$id)->first();
-		
-		$data = array("title"=>"Edit Notice","success"=>$success,"error"=>$error,"notice"=>$notice);
+		$employee = $employeeModel->where("code",$code)->first();
+	
+		$data = array("title"=>"Edit Employee","success"=>$success,"error"=>$error,"employee"=>$employee);
 
-		$this->page_loader("edit_notice",$data);
+		$this->page_loader("edit_employee",$data);
 		
 	}
 

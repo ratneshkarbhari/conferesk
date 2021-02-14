@@ -56,7 +56,7 @@ class Employees extends BaseController
 
     }
 
-    public function delete_employee_exe(){
+    public function deactivate_employee_exe(){
         
         $session = session();
 
@@ -97,34 +97,41 @@ class Employees extends BaseController
             return redirect()->to(site_url());         
         }
 
+        $code = $this->request->getPost("code");
         $id = $this->request->getPost("id");
 
         $pageLoader = new PageLoader();
-        $noticeModel = new NoticeModel();
+        $employeeModel = new EmployeeModel();
 
-        if($this->request->getPost("slug")==''){
-            $slug= url_title($this->request->getPost("title"),'-',TRUE);
-        }else {
-            $slug= url_title($this->request->getPost("slug"),'-',TRUE);
-        }
+        $email = $this->request->getPost("email");
+        $role = $this->request->getPost("department");
+
+        $employeeExists = $employeeModel->where("email",$email)->where("role",$role)->first();
+        
+        if ($employeeExists&&$employeeExists["id"]!=$id) {
+            
+            $pageLoader->edit_employee($code,"","An Employee exists with the email you provided in the same department");
+            
+        } else {
 
         $objToInsert = array(
-            "title" => $this->request->getPost("title"),
-            "slug" => $slug,
-            "date" => $this->request->getPost("date"),
-            "body" => $this->request->getPost("body"),
-            "department" => $this->request->getPost("department"),
-            "link" => $this->request->getPost("link")
+            "fname" => $this->request->getPost("fname"),
+            "lname" => $this->request->getPost("lname"),
+            "email" => $email,
+            "password" => password_hash($this->request->getPost("password"),PASSWORD_DEFAULT),
+            "role" => $role,
+            "code" => $code,
+            "status" => "active"
         );
 
-        $updated = $noticeModel->update($id,$objToInsert);
+        $updated = $employeeModel->update($id,$objToInsert);
 
         if ($updated) {
-            $pageLoader->edit_notice($slug,"Notice Updated","");
+            $pageLoader->edit_employee($code,"Employee updated","");
         } else {
-            $pageLoader->edit_notice($slug,"","Notice couldnt be updated");
+            $pageLoader->edit_employee($code,"","Employee couldnt be updated");
         }
-        
+    }
 
     }
 
