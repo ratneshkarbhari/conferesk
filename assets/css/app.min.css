@@ -1,0 +1,21 @@
+.w-50{
+    width: 50%;
+}
+.w-100{
+    width: 100%;
+}
+header, main, footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+    padding-left: 0;
+    }
+}
+.btn{
+    margin-bottom: 3%;
+}
+.container{
+    width: 90%;
+}
