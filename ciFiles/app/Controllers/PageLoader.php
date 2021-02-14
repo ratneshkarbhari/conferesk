@@ -82,4 +82,24 @@ class PageLoader extends BaseController
 		
 	}
 
+	public function edit_notice($slug,$success="",$error=""){
+		
+		$session = session();
+
+		$role = $session->get("role");
+
+		if(!isset($role)){
+			return redirect()->route('login');
+		}
+
+		$noticeModel = new \App\Models\NoticeModel();
+
+		$notice = $noticeModel->where("slug",$slug)->first();
+		
+		$data = array("title"=>"Edit Notice","success"=>$success,"error"=>$error,"notice"=>$notice);
+
+		$this->page_loader("edit_notice",$data);
+		
+	}
+
 }

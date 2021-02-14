@@ -1,8 +1,8 @@
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="container">
         <h3 class="welcome-text"><?php echo $title; ?></h3>
-        <p class="text-sucess"><?php echo $success; ?></p>
-        <p class="text-danger"><?php echo $error; ?></p>
+        <p class="green-text darken-3"><?php echo $success; ?></p>
+        <p class="red-text darken-3"><?php echo $error; ?></p>
 
         <a href="<?php echo site_url("add-new-notice"); ?>" class="btn btn-success">+ Notice</a>
         <br><br>
@@ -33,6 +33,11 @@
                                 <div class="modal-content">
                                     <?php echo $notice["body"]; ?>
                                 </div>
+                                <?php if($notice["link"]!=''): ?>
+                                <div class="modal-footer">
+                                    <a target="_blank" href="<?php echo $notice["link"]; ?>" class="modal-close waves-effect waves-green btn-flat">Link</a>
+                                </div>
+                                <?php endif; ?>
                             </div>
                             <a class="btn green" href="<?php echo site_url('edit-notice/'.$notice['slug']); ?>">Edit</a>
                             <form action="<?php echo site_url('delete-notice-exe'); ?>" style="display: inline;" method="post">

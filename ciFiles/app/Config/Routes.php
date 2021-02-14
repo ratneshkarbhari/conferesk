@@ -38,7 +38,7 @@ $routes->get('/', 'PageLoader::dashboard');
 $routes->get('login', 'PageLoader::login');
 $routes->get("notices-mgt","PageLoader::notices_mgt");
 $routes->get("add-new-notice","PageLoader::add_notice");
-$routes->get("edit-notice/(:any)","PageLoader::add_notice/$1");
+$routes->get("edit-notice/(:any)","PageLoader::edit_notice/$1");
 
 // Auth EndPoints
 $routes->post("login-exe","Authentication::login");
@@ -46,7 +46,8 @@ $routes->get("logout-exe","Authentication::logout");
 
 // Notices
 $routes->post("create-notice-exe","Notices::create_notice_exe");
-
+$routes->post("delete-notice-exe","Notices::delete_notice_exe");
+$routes->post("update-notice-exe","Notices::update_notice_exe");
 /*
  * --------------------------------------------------------------------
  * Additional Routing
