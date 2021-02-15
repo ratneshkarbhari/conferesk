@@ -114,24 +114,32 @@ class Employees extends BaseController
             
         } else {
 
-        $objToInsert = array(
-            "fname" => $this->request->getPost("fname"),
-            "lname" => $this->request->getPost("lname"),
-            "email" => $email,
-            "password" => password_hash($this->request->getPost("password"),PASSWORD_DEFAULT),
-            "role" => $role,
-            "code" => $code,
-            "status" => "active"
-        );
+            $prevEmployeeData = $employeeModel->find($id);
 
-        $updated = $employeeModel->update($id,$objToInsert);
+            if($this->request->getPost("password")!=''){
+                $pwdToUpdate = password_hash($this->request->getPost("password"),PASSWORD_DEFAULT);
+            }else {
+                $pwdToUpdate = $prevEmployeeData["password"];
+            }
 
-        if ($updated) {
-            $pageLoader->edit_employee($code,"Employee updated","");
-        } else {
-            $pageLoader->edit_employee($code,"","Employee couldnt be updated");
+            $objToInsert = array(
+                "fname" => $this->request->getPost("fname"),
+                "lname" => $this->request->getPost("lname"),
+                "email" => $email,
+                "password" => password_hash($this->request->getPost("password"),PASSWORD_DEFAULT),
+                "role" => $role,
+                "code" => $pwdToUpdate,
+                "status" => "active"
+            );
+
+            $updated = $employeeModel->update($id,$objToInsert);
+
+            if ($updated) {
+                $pageLoader->edit_employee($code,"Employee updated","");
+            } else {
+                $pageLoader->edit_employee($code,"","Employee couldnt be updated");
+            }
         }
-    }
 
     }
 

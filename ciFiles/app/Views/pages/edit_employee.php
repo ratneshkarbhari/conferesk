@@ -40,8 +40,8 @@
                 <input type="text" name="email" id="email" class="form-control" value="<?php echo $employee["email"]; ?>">
             </div>
             <div class="mb-3">
-                <label for="date">Password</label>
-                <input value="<?php echo uniqid(); ?>" type="text" name="password" id="password" class="form-control" >
+                <label for="date">New Password</label>
+                <input type="text" name="password" id="password" class="form-control" >
             </div>
             
             <br>

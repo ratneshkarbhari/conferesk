@@ -24,12 +24,14 @@
                         <li><div class="user-view">                        
                         <a href="#name"><span class="black-text name"><?php echo $_SESSION["first_name"].' '.$_SESSION["last_name"]; ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $_SESSION["email"]; ?></span></a>
+                        <a href="<?php echo site_url("edit-profile"); ?>"><span class="blue-text email">Edit Profile</span></a>
                         </div></li>
                         <li><a class="waves-effect" href="<?php echo site_url(); ?>">Dashboard</a></li>
+                        <?php if($_SESSION["role"]=="admin"): ?>
                         <li><a class="waves-effect" href="<?php echo site_url("notices-mgt"); ?>">Notices</a></li>
                         <li><a class="waves-effect" href="#!">Tasks</a></li>
                         <li><a class="waves-effect" href="<?php echo site_url("employee-mgt"); ?>">Employees</a></li>
-                        <li><a class="waves-effect" href="#!">Logout</a></li>
+                        <?php endif; ?>
                     </ul>
                     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <a href="<?php echo site_url("/"); ?>" class="brand-logo center">Conferesk</a>
