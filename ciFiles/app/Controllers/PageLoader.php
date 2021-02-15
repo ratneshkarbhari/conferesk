@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\NoticeModel;
+use App\Models\AuthModel;
 
 class PageLoader extends BaseController
 {
@@ -104,7 +105,7 @@ class PageLoader extends BaseController
 		
 	}
 
-	// Employees
+	// Employees Mgt.
 
 	public function employee_mgt($success="",$error=""){
 		
@@ -162,6 +163,8 @@ class PageLoader extends BaseController
 		
 	}
 
+	// Employee PAges
+
 	public function department_notices(){
 		
 		$session = session();
@@ -179,6 +182,25 @@ class PageLoader extends BaseController
 
 		$this->page_loader("my_notices",$data);
 
+	}
+
+	public function edit_profile($success="",$error=""){
+		$session = session();
+		$role = $session->get("role");
+		$allowedRoles = array("marketing","sales","hr","design","admin");		
+		if(isset($role)&&in_array($role,$allowedRoles)){
+			$authModel = new AuthModel();
+			$userData = $authModel->find($_SESSION["id"]);
+			$data = array(
+				"title" => "Edit Profile",
+				"success" => $success,
+				"error" => $error,
+				"employee" => $userData
+			);
+			$this->page_loader("edit_profile",$data);
+		}else {
+			return redirect()->to(site_url());
+		}
 	}
 
 }

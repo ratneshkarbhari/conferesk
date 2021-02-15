@@ -16,7 +16,7 @@ class Authentication extends BaseController
         
         $email_entered = $this->request->getPost("email");
         $password_entered = $this->request->getPost("password");
-        $department = $this->request->getPost("role");
+        $department = $this->request->getPost("department");
         
         if($email_entered==''||$password_entered==''){
             

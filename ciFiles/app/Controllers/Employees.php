@@ -143,5 +143,63 @@ class Employees extends BaseController
 
     }
 
+    public function update_profile_exe(){
+        
+        $session = session();
+
+        $role = $session->get("role");
+
+        if(!isset($role)){
+            return redirect()->to(site_url());         
+        }
+
+        $code = $this->request->getPost("code");
+        $id = $this->request->getPost("id");
+
+        $pageLoader = new PageLoader();
+        $employeeModel = new EmployeeModel();
+
+        $email = $this->request->getPost("email");
+        $role = $this->request->getPost("department");
+
+        $employeeExists = $employeeModel->where("email",$email)->where("role",$role)->first();
+        
+        if ($employeeExists&&$employeeExists["id"]!=$id) {
+            
+            $pageLoader->edit_profile($code,"","An Employee exists with the email you provided in the same department");
+            
+        } else {
+
+            $prevEmployeeData = $employeeModel->find($id);
+
+            if($this->request->getPost("password")!=''){
+                $pwdToUpdate = password_hash($this->request->getPost("password"),PASSWORD_DEFAULT);
+            }else {
+                $pwdToUpdate = $prevEmployeeData["password"];
+            }
+
+            $objToInsert = array(
+                "id" => $id,
+                "fname" => $this->request->getPost("fname"),
+                "lname" => $this->request->getPost("lname"),
+                "email" => $email,
+                "password" => $pwdToUpdate,
+                "role" => $this->request->getPost("department"),
+                "code" => $prevEmployeeData["code"],
+                "status" => $this->request->getPost("status")
+            );
+
+            $updated = $employeeModel->update($id,$objToInsert);
+
+            if ($updated) {
+                $session->set($objToInsert);
+                $pageLoader->edit_profile("Profile updated","");
+            } else {
+                $pageLoader->edit_profile("","Profile couldnt be updated");
+            }
+        }
+
+    }
+
 
 }
