@@ -16,6 +16,7 @@
                         <td style="font-size: 1.2rem; font-weight: 500;">Name</td>
                         <td style="font-size: 1.2rem; font-weight: 500;">Department</td>
                         <td style="font-size: 1.2rem; font-weight: 500;">Email</td>
+                        <td style="font-size: 1.2rem; font-weight: 500;">Status</td>
                         <td style="font-size: 1.2rem; font-weight: 500;">Actions</td>
                     </tr>
                 </thead>
@@ -25,11 +26,12 @@
                         <td><?php echo $employee['fname'].' '.$employee["lname"]; ?></td>
                         <td><?php echo $employee['role']; ?></td>
                         <td><?php echo $employee['email']; ?></td>
+                        <td><?php echo $employee['status']; ?></td>
                         <td>
                             <a class="btn green" href="<?php echo site_url('edit-employee/'.$employee['code']); ?>">Edit</a>
                             <form action="<?php echo site_url('delete-employee-exe'); ?>" style="display: inline;" method="post">
                                 <input type="hidden" name="id" value="<?php echo $employee['id']; ?>">
-                                <button type="submit" class="btn red">Delete</button>
+                                <button type="submit" class="btn red">deactivate</button>
                             </form>
                         </td>
                     </tr>
