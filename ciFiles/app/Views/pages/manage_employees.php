@@ -29,10 +29,10 @@
                         <td><?php echo $employee['status']; ?></td>
                         <td>
                             <a class="btn green" href="<?php echo site_url('edit-employee/'.$employee['code']); ?>">Edit</a>
-                            <form action="<?php echo site_url('delete-employee-exe'); ?>" style="display: inline;" method="post">
+                            <!-- <form action="<?php echo site_url('delete-employee-exe'); ?>" style="display: inline;" method="post">
                                 <input type="hidden" name="id" value="<?php echo $employee['id']; ?>">
                                 <button type="submit" class="btn red">deactivate</button>
-                            </form>
+                            </form> -->
                         </td>
                     </tr>
                     <?php endforeach; ?>

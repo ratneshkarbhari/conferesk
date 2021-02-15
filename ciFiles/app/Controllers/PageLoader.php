@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\NoticeModel;
+
 class PageLoader extends BaseController
 {
 
@@ -158,6 +160,25 @@ class PageLoader extends BaseController
 
 		$this->page_loader("edit_employee",$data);
 		
+	}
+
+	public function department_notices(){
+		
+		$session = session();
+		$role = $session->get("role");
+		$allowedRoles = array("marketing","sales","hr","design");
+		if(!in_array($role,$allowedRoles)){
+			return redirect()->to(site_url());
+		}
+
+		$noticeModel = new NoticeModel();
+
+		$notices = $noticeModel->where("department",$_SESSION["role"])->orwhere("department","general")->findAll();
+
+		$data = array("title"=>"My Notices","notices"=>$notices);
+
+		$this->page_loader("my_notices",$data);
+
 	}
 
 }

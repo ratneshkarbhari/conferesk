@@ -16,6 +16,7 @@ class Authentication extends BaseController
         
         $email_entered = $this->request->getPost("email");
         $password_entered = $this->request->getPost("password");
+        $department = $this->request->getPost("role");
         
         if($email_entered==''||$password_entered==''){
             
@@ -27,7 +28,7 @@ class Authentication extends BaseController
 
         $authModel = new \App\Models\AuthModel();
 
-        $userData = $authModel->where("email",$email_entered)->first();
+        $userData = $authModel->where("email",$email_entered)->where("role",$this->request->getPost("department"))->where("status","active")->first();
 
         if ($userData) {
             
@@ -60,7 +61,7 @@ class Authentication extends BaseController
             
         } else {
 
-            $pageLoader->login("The Email is incorrect");
+            $pageLoader->login("The Email & Department is incorrect or your account is deactivated");
 
             exit();
 

@@ -126,10 +126,10 @@ class Employees extends BaseController
                 "fname" => $this->request->getPost("fname"),
                 "lname" => $this->request->getPost("lname"),
                 "email" => $email,
-                "password" => password_hash($this->request->getPost("password"),PASSWORD_DEFAULT),
-                "role" => $role,
-                "code" => $pwdToUpdate,
-                "status" => "active"
+                "password" => $pwdToUpdate,
+                "role" => $this->request->getPost("department"),
+                "code" => $prevEmployeeData["code"],
+                "status" => $this->request->getPost("status")
             );
 
             $updated = $employeeModel->update($id,$objToInsert);
@@ -142,5 +142,6 @@ class Employees extends BaseController
         }
 
     }
+
 
 }

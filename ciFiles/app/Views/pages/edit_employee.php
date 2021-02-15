@@ -36,6 +36,17 @@
                 </select>
             </div>
             <div class="mb-3">
+                <label for="status">Status</label>
+                <select name="status" id="status" >
+                    <option value="active" <?php if($employee["status"]=="active"){
+                        echo "selected";
+                    } ?>>Active</option>
+                    <option value="inactive" <?php if($employee["status"]=="inactive"){
+                        echo "selected";
+                    } ?>>Inactive</option>
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email" class="form-control" value="<?php echo $employee["email"]; ?>">
             </div>

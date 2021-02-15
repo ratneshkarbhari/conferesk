@@ -7,10 +7,21 @@
 
             <div class="logo-container center">
                 <img src="<?php echo site_url("assets/images/logo.jpeg"); ?>" class="w-50">
-            </div>
-            
+                <p class="red-text"><?php echo $error; ?></p>
+            </div>            
 
             <form action="<?php echo site_url("login-exe"); ?>" method="post">
+
+                <div class="mb-3">
+                    <label for="department">Department</label>
+                    <select name="department" id="department" >
+                        <option value="admin">Admin</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="sales">Sales</option>
+                        <option value="hr">Human Resource</option>
+                        <option value="design">Design</option>
+                    </select>
+                </div>
 
                 <div class="input-field">
                     <label for="email">Email</label>

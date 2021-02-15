@@ -59,6 +59,10 @@ $routes->post("create-employee-exe","Employees::create_employee_exe");
 $routes->post("delete-employee-exe","Employees::delete_employee_exe");
 $routes->post("update-employee-exe","Employees::update_employee_exe");
 
+// Employee Page Routes
+$routes->get("department-notices","PageLoader::department_notices");
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
