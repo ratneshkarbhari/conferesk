@@ -29,10 +29,21 @@
                 </div>
 
                 <div class="input-field">
-                    <label for="password">Password</label>
+                    <label for="password">Password</label><span style="position: absolute; right: 0;cursor: pointer;" id="show-hide-pwd">Show Password</span>
                     <input type="password" name="password" id="password">
                 </div>
-
+                <script>
+                $("span#show-hide-pwd").click(function (e) { 
+                    e.preventDefault();
+                    if($("input#password").attr("type")=="password"){
+                        $("input#password").attr("type","text");
+                        $("span#show-hide-pwd").html("Hide Password");
+                    }else{
+                        $("input#password").attr("type","password");
+                        $("span#show-hide-pwd").html("Show Password");
+                    }
+                });
+                </script>
                 <button type="submit" class="btn w-100">Login</button>
             
             </form>

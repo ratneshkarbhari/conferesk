@@ -64,6 +64,16 @@ $routes->get("department-notices","PageLoader::department_notices");
 $routes->get("edit-profile","PageLoader::edit_profile");
 $routes->post("update-profile-exe","Employees::update_profile_exe");
 
+// Tasks
+$routes->post("create-task-exe","Notices::create_task_exe");
+$routes->post("delete-task-exe","Notices::delete_task_exe");
+$routes->post("update-task-exe","Notices::update_task_exe");
+
+$routes->get("tasks-mgt","PageLoader::tasks_mgt");
+$routes->get("add-new-task","PageLoader::add_task");
+$routes->get("edit-task/(:any)","PageLoader::edit_task/$1");
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

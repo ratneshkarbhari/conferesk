@@ -40,7 +40,7 @@
                 <textarea name="body" id="body" class="form-control"><?php echo $notice["body"]; ?></textarea>
             </div>
             <br>
-            <button type="submit" class="btn btn-success">Add Notice</button>
+            <button type="submit" class="btn btn-success">Update</button>
             
         </form>
 

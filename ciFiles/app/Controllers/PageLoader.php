@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\NoticeModel;
 use App\Models\AuthModel;
+use App\Models\TaskModel;
+use App\Models\EmployeeModel;
 
 class PageLoader extends BaseController
 {
@@ -201,6 +203,31 @@ class PageLoader extends BaseController
 		}else {
 			return redirect()->to(site_url());
 		}
+	}
+
+	public function tasks_mgt($success="",$error=""){
+		$session = session();
+		$role = $session->get("role");
+		if ($role!="admin") {
+			return redirect()->to(site_url("/"));
+		} 
+		$taskModel = new TaskModel();
+		$tasks = array();
+		$tasks = $taskModel->findAll();
+		$data = array("title"=>"Manage Tasks","success"=>$success,"error"=>$error,"tasks"=>$tasks);
+		$this->page_loader("tasks_mgt",$data);
+	}
+
+	public function add_task($success="",$error=""){
+		$session = session();
+		$role = $session->get("role");
+		if ($role!="admin") {
+			return redirect()->to(site_url("/"));
+		} 
+		$employeeModel = new EmployeeModel();
+		$employees = $employeeModel->where("role!=","admin")->findAll();
+		$data = array("title"=>"Add Task","success"=>$success,"error"=>$error,"employees"=>$employees);
+		$this->page_loader("add_task",$data);
 	}
 
 }

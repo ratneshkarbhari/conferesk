@@ -23,7 +23,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'https://codesevaco.tech/conferesk/';
+	public $baseURL = 'http://localhost/conferesk/';
 
 	/**
 	 * --------------------------------------------------------------------------
