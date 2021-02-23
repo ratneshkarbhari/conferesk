@@ -26,7 +26,7 @@
                         <td><?php echo $task["due_date"]; ?></td>
                         <td><?php echo $task['status']; ?></td>
                         <td>
-                            <a class="btn green" href="<?php echo site_url('edit-task/'.$task['slug']); ?>">Edit</a>
+                            <a class="btn green" href="<?php echo site_url('edit-task/'.$task['id']); ?>">Edit</a>
                             <form action="<?php echo site_url('delete-task-exe'); ?>" style="display: inline;" method="post">
                                 <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
                                 <button type="submit" class="btn red">Delete</button>

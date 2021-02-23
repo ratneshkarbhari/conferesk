@@ -230,4 +230,41 @@ class PageLoader extends BaseController
 		$this->page_loader("add_task",$data);
 	}
 
+	public function edit_task($id,$success="",$error=""){
+		$session = session();
+		$role = $session->get("role");
+		if ($role!="admin") {
+			return redirect()->to(site_url("/"));
+		} 
+		$taskModel = new TaskModel();
+		$taskData = $taskModel->find($id);
+		$employeeModel = new EmployeeModel();
+		$employees = $employeeModel->where("role!=","admin")->findAll();
+		$data = array("title"=>"Edit Task","taskData"=>$taskData,"success"=>$success,"error"=>$error,"employees"=>$employees);
+		$this->page_loader("edit_task",$data);
+	}
+
+	public function task_file_delete_api(){
+		$session = session();
+		$role = $session->get("role");
+		if ($role!="admin") {
+			return 'unauthorized';
+		} 
+		$fileName = $this->request->getPost("fileName");
+		$fileFolderPath = './assets/task_files/';
+		$fileLink = $fileFolderPath.$fileName;
+		$fileListJson = $this->request->getPost("fileListJson");
+		unlink($fileLink);
+		$fileList = json_decode($fileListJson,TRUE);
+		$key = array_search($fileName,$fileList);
+		unset($fileList[$key]);
+		$fileListJson = json_encode($fileList);
+		$taskModel = new TaskModel();
+		$taskModel 
+		->where('id', $this->request->getPost("task_id"))
+		->set(['files' => $fileListJson])
+		->update();
+		return 'done';
+	}
+
 }

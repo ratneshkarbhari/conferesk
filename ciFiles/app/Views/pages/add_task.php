@@ -5,7 +5,7 @@
         <p class="green-text darken-2"><?php echo $success; ?></p>
         <p class="red-text darken-2"><?php echo $error; ?></p>
 
-        <form action="<?php echo site_url("create-notice-exe"); ?>" method="post">
+        <form enctype="multipart/form-data" action="<?php echo site_url("create-task-exe"); ?>" method="post">
             
             <div class="mb-3">
                 <label for="title">Title</label>
@@ -16,29 +16,41 @@
                 <input type="text" name="slug" id="slug" class="form-control">
             </div>
             <div class="mb-3">
-                <label for="date">Date</label>
-                <input value="<?php echo date("d-m-Y"); ?>" type="text" name="date" id="date" class="form-control" readonly>
+                <label for="due_date">Due Date</label>
+                <input placeholder="<?php echo date("d-m-Y"); ?>" type="text" name="date" id="date" class="form-control">
             </div>
-            <div class="mb-3">
-                <label for="department">Department</label>
-                <select name="department" id="department" >
-                    <option value="general">General</option>
-                    <option value="marketing">Marketing</option>
-                    <option value="sales">Sales</option>
-                    <option value="hr">Human Resource</option>
-                    <option value="design">Design</option>
-                </select>
-            </div>
-            <div class="mb-3">
+
+            <!-- <div class="mb-3">
                 <label for="link">Link</label>
                 <input type="text" name="link" id="link" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="body">Body</label>
-                <textarea name="body" id="body" class="form-control"></textarea>
+            </div> -->
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>Upload Multiple files</span>
+                    <input type="file" name="files[]" multiple>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
             </div>
             <br>
-            <button type="submit" class="btn btn-success">Add Notice</button>
+            <div class="mb-3">
+                <label for="users">Add Users to task</label>
+                <?php foreach($employees as $employee): ?>
+                    <p>
+                        <label>
+                            <input type="checkbox" name="users[]" value="<?php echo $employee['id']; ?>" />
+                            <span><?php echo $employee["fname"].' '.$employee["lname"]; ?></span>
+                        </label>
+                    </p>
+                <?php endforeach; ?>
+            </div>
+            <div class="mb-3">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" class="form-control"></textarea>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success">Add Task</button>
             
         </form>
 
@@ -46,5 +58,5 @@
 </div>
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace( 'body' );
+    CKEDITOR.replace( 'description' );
 </script>
