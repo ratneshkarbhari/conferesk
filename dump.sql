@@ -87,7 +87,7 @@ CREATE TABLE `tasks` (
   `files` longtext NOT NULL,
   `staff` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES (9,'Test Task','test-task-slug','<p>Task Description</p>\r\n','22-02-2021','23-02-2021','created','{\"0\":\"1614072895_c6ba5b1de2043d3c41db.svg\",\"1\":\"1614072895_e38e7242e736fef08adc.svg\",\"3\":\"1614072895_a7533a8039d376c99725.docx\"}','[\"2\"]');
+INSERT INTO `tasks` VALUES (11,'test Task1 editedz','asda dads a a','<h1><strong>Task Description:</strong></h1>\r\n\r\n<p>aasdasdadas a das da</p>\r\n\r\n<p>&nbsp;dad a dasd a dasd asda a sa d</p>\r\n\r\n<p>a sasd</p>\r\n','2020-02-28','25-02-2021','created','{\"2\":\"1614237198_3e08cf4bc0da112c62ce.docx\",\"3\":\"1614237306_304e90d0aed4190c2cdd.docx\",\"4\":\"1614237306_90e96d47f8d4d618a578.pdf\",\"5\":\"1614237306_09e8c069bc70f6087945.sql\",\"6\":\"1614237306_e845821d8d184c4773d8.docx\"}','[\"2\"]');
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-24  0:12:34
+-- Dump completed on 2021-02-25 12:45:42

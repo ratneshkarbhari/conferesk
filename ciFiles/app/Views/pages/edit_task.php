@@ -43,7 +43,7 @@
                 <?php foreach($employees as $employee): ?>
                     <p>
                         <label>
-                            <input type="checkbox" name="users[]" value="<?php echo $employee['id']; ?>" <?php $users = json_decode($taskData["staff"],TRUE); var_dump($users);  ?> />
+                            <input type="checkbox" name="users[]" value="<?php echo $employee['id']; ?>" <?php $users = json_decode($taskData["staff"],TRUE); if(in_array($employee["id"],$users)){echo "checked";} ?> />
                             <span><?php echo $employee["fname"].' '.$employee["lname"]; ?></span>
                         </label>
                     </p>
@@ -76,7 +76,9 @@
                 "fileListJson" : '<?php echo $taskData["files"]; ?>'
             },
             success: function (response) {
-              console.log(response);
+              if (response=="done") {
+                window.location.href="<?php echo site_url("edit-task/".$taskData["id"]) ?>";
+              }
             }
         });
     });
