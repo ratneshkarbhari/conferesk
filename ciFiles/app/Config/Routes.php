@@ -74,6 +74,8 @@ $routes->get("add-new-task","PageLoader::add_task");
 $routes->get("edit-task/(:any)","PageLoader::edit_task/$1");
 
 $routes->post("task-file-delete-api","PageLoader::task_file_delete_api");
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

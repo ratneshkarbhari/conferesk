@@ -166,4 +166,29 @@ class Tasks extends BaseController
         
     }
 
+    public function delete_task_exe(){
+
+        $session = session();
+        $role = $session->get("role");
+
+        if ($role!="admin") {
+            return redirect()->to(site_url());         
+        }
+
+        $taskModel = new TaskModel();
+
+        $id = $this->request->getPost("id");
+
+        $deleted = $taskModel->delete($id);
+        
+        $pageLoader = new PageLoader();
+
+        if ($deleted) {
+            $pageLoader->tasks_mgt("Task Deleted Successfully","");        
+        } else {
+            $pageLoader->tasks_mgt("","Task not deleted");        
+        }
+        
+    }
+
 }

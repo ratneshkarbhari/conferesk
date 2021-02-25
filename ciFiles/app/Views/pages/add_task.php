@@ -40,7 +40,7 @@
                     <p>
                         <label>
                             <input type="checkbox" name="users[]" value="<?php echo $employee['id']; ?>" />
-                            <span><?php echo $employee["fname"].' '.$employee["lname"]; ?></span>
+                            <span><?php echo $employee["fname"].' '.$employee["lname"].' ('.ucfirst($employee["role"]).') ';  ?></span>
                         </label>
                     </p>
                 <?php endforeach; ?>
