@@ -16,9 +16,9 @@ class Tasks extends BaseController
         }
 
         if($this->request->getPost("slug")==""){
-            $slug = $this->request->getPost("title");
+            $slug= url_title($this->request->getPost("title"),'-',TRUE);
         }else {
-            $slug = $this->request->getPost("slug");
+            $slug= url_title($this->request->getPost("slug"),'-',TRUE);
         }
 
         $taskModel = new TaskModel();
@@ -95,9 +95,9 @@ class Tasks extends BaseController
         }
 
         if($this->request->getPost("slug")==""){
-            $slug = $this->request->getPost("title");
+            $slug= url_title($this->request->getPost("title"),'-',TRUE);
         }else {
-            $slug = $this->request->getPost("slug");
+            $slug= url_title($this->request->getPost("slug"),'-',TRUE);
         }
 
         $taskModel = new TaskModel();

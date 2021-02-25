@@ -32,7 +32,7 @@
                         <li><a class="waves-effect" href="<?php echo site_url("tasks-mgt"); ?>">Tasks</a></li>
                         <li><a class="waves-effect" href="<?php echo site_url("employee-mgt"); ?>">Employees</a></li>
                         <?php else: ?>
-                        <li><a class="waves-effect" href="<?php echo site_url("department-notices"); ?>">Notices</a></li>
+                        <li><a class="waves-effect" href="<?php echo site_url("my-notices"); ?>">Notices</a></li>
                         <li><a class="waves-effect" href="<?php echo site_url("my-tasks"); ?>">Tasks</a></li>
                         <li><a class="waves-effect" href="<?php echo site_url("my-meetings"); ?>">Meetings</a></li>
                         <?php endif; ?>

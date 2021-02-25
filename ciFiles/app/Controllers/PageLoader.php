@@ -186,6 +186,45 @@ class PageLoader extends BaseController
 
 	}
 
+
+	public function my_tasks(){
+		$session = session();
+		$role = $session->get("role");
+		$allowedRoles = array("marketing","sales","hr","design");
+		if(!in_array($role,$allowedRoles)){
+			return redirect()->to(site_url());
+		}
+
+		$taskModel = new TaskModel();
+
+		$tasks = $taskModel->findAll();
+		$tasks = array_reverse($tasks);
+
+		$data = array("title"=>"My Tasks","tasks"=>$tasks);
+
+		$this->page_loader("my_tasks",$data);
+	}
+
+	public function task_details($slug){
+		$session = session();
+		$role = $session->get("role");
+		$allowedRoles = array("marketing","sales","hr","design","admin");		
+		if(isset($role)&&in_array($role,$allowedRoles)){
+			$taskModel = new TaskModel();
+			$taskData = $taskModel->where("slug",$slug)->first();
+			$employeeModel = new EmployeeModel();
+			$employees = $employeeModel->find(json_decode($taskData['staff'],TRUE));
+			$data = array(
+				'title' => $taskData['title'],
+				"taskData" => $taskData,
+				"employees" => $employees
+			);
+			$this->page_loader("task_details",$data);
+		}else {
+			return redirect()->to(site_url());
+		}
+	}
+
 	public function edit_profile($success="",$error=""){
 		$session = session();
 		$role = $session->get("role");

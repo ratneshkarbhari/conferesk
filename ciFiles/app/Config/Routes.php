@@ -60,14 +60,19 @@ $routes->post("delete-employee-exe","Employees::delete_employee_exe");
 $routes->post("update-employee-exe","Employees::update_employee_exe");
 
 // Employee Page Routes
-$routes->get("department-notices","PageLoader::department_notices");
+$routes->get("my-notices","PageLoader::department_notices");
 $routes->get("edit-profile","PageLoader::edit_profile");
 $routes->post("update-profile-exe","Employees::update_profile_exe");
+$routes->get("my-tasks","PageLoader::my_tasks");
+$routes->get("task-details/(:any)","PageLoader::task_details/$1");
 
 // Tasks
 $routes->post("create-task-exe","Tasks::create_task_exe");
 $routes->post("delete-task-exe","Tasks::delete_task_exe");
 $routes->post("update-task-exe","Tasks::update_task_exe");
+
+
+
 
 $routes->get("tasks-mgt","PageLoader::tasks_mgt");
 $routes->get("add-new-task","PageLoader::add_task");
