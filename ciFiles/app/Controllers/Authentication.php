@@ -7,7 +7,6 @@ class Authentication extends BaseController
 
         $pageLoader = new \App\Controllers\PageLoader();
 
-        
         $session = session();
 		$role = $session->get("role");
 		if(isset($role)){

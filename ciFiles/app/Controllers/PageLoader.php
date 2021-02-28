@@ -58,14 +58,13 @@ class PageLoader extends BaseController
 
 		$role = $session->get("role");
 
-		if(!isset($role)){
+		if($role!="admin"){
 			return redirect()->route('login');
 		}		
 
         $noticeModel = new \App\Models\NoticeModel();
 
 		$data = array("title"=>"Manage Notices","success"=>$success,"error"=>$error,"notices"=>$noticeModel->findAll());
-
 
 		$this->page_loader("manage_notices",$data);
 
@@ -222,6 +221,17 @@ class PageLoader extends BaseController
 			$this->page_loader("task_details",$data);
 		}else {
 			return redirect()->to(site_url());
+		}
+	}
+
+	public function test_meeting(){
+		$session = session();
+		$role = $session->get("role");
+		if (!isset($role)) {
+			return redirect()->to(site_url());
+		} else {
+			$data = array("title"=>"Test Meeting");	
+			$this->page_loader("test_meeting",$data);
 		}
 	}
 

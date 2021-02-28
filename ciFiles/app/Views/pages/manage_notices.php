@@ -4,7 +4,7 @@
         <p class="green-text darken-3"><?php echo $success; ?></p>
         <p class="red-text darken-3"><?php echo $error; ?></p>
 
-        <a href="<?php echo site_url("add-new-notice"); ?>" class="btn btn-success">+ Notice</a>
+        <a href="<?php echo site_url("add-new-notice"); ?>" class="btn">+ Notice</a>
         <br><br>
         
         <?php if(count($notices)>0): ?>

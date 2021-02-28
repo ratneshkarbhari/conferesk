@@ -1,4 +1,4 @@
-<main class="page-content" id="login">
+<main class="page-content" id="login" style="padding: 3% 0;">
 
     <div class="row">
 

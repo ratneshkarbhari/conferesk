@@ -1,10 +1,13 @@
 <?php namespace App\Controllers;
 
 use App\Models\TaskModel;
+use App\Models\TaskCommentModel;
 use App\Controllers\PageLoader;
 
 class Tasks extends BaseController
 {
+
+    
 
     public function create_task_exe(){
         
@@ -81,6 +84,28 @@ class Tasks extends BaseController
                 $pageLoader->add_task("","Task not Added");
             }
         
+        }
+        
+    }
+
+    public function add_comment(){
+
+        $user_id = $this->request->getPost("user_id");
+        $task_id = $this->request->getPost("task_id");
+        $comment = $this->request->getPost("comment");
+
+        $taskCommentModel = new TaskCommentModel();
+
+        $inserted = $taskCommentModel->insert(array(
+            "body" => $comment,
+            "task" => $task_id,
+            "user" => $user_id
+        ));
+        
+        if ($inserted) {
+            return("done");
+        } else {
+            return("not done");
         }
         
     }

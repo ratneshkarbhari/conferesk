@@ -11,7 +11,4 @@ class AuthModel extends Model
 
     protected $allowedFields = ['fname', 'lname','email','role','password','code','status'];
 
-    
-
-
 }

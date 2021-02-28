@@ -71,8 +71,9 @@ $routes->post("create-task-exe","Tasks::create_task_exe");
 $routes->post("delete-task-exe","Tasks::delete_task_exe");
 $routes->post("update-task-exe","Tasks::update_task_exe");
 
+$routes->post("add-comment-to-task-api","Tasks::add_comment");
 
-
+$routes->get("test-meeting","PageLoader::test_meeting");
 
 $routes->get("tasks-mgt","PageLoader::tasks_mgt");
 $routes->get("add-new-task","PageLoader::add_task");

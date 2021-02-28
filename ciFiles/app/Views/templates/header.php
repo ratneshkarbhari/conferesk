@@ -34,7 +34,7 @@
                         <?php else: ?>
                         <li><a class="waves-effect" href="<?php echo site_url("my-notices"); ?>">Notices</a></li>
                         <li><a class="waves-effect" href="<?php echo site_url("my-tasks"); ?>">Tasks</a></li>
-                        <li><a class="waves-effect" href="<?php echo site_url("my-meetings"); ?>">Meetings</a></li>
+                        <li><a class="waves-effect" href="<?php echo site_url("test-meeting"); ?>">Test Meeting</a></li>
                         <?php endif; ?>
                     </ul>
                     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
