@@ -10,6 +10,9 @@
         <?php $i=1; $taskFiles = json_decode($taskData["files"],TRUE); $i=1; foreach($taskFiles as $tf):  ?>
         <a href="<?php echo site_url('assets/task_files/'.$tf); ?>" class="btn" id="<?php echo $tf; ?>"  download>File <?php echo $i; ?></a>
         <?php $i++; endforeach; ?>
+        <?php foreach($task_comments as $tc): ?>
+            <p><?php echo $tc["body"]; ?></p>
+        <?php endforeach; ?>
         <h4>Add a Comment:</h4>
         <textarea id="add-comment" class="materialize-textarea"></textarea>
         <div id="filesBox">

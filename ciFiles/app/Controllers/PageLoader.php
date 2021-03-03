@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\NoticeModel;
 use App\Models\AuthModel;
 use App\Models\TaskModel;
+use App\Models\TaskCommentModel;
 use App\Models\EmployeeModel;
 
 class PageLoader extends BaseController
@@ -213,10 +214,13 @@ class PageLoader extends BaseController
 			$taskData = $taskModel->where("slug",$slug)->first();
 			$employeeModel = new EmployeeModel();
 			$employees = $employeeModel->find(json_decode($taskData['staff'],TRUE));
+			$taskCommentModel = new TaskCommentModel();
+			$taskComments = $taskCommentModel->where("task",$taskData["id"])->findAll();
 			$data = array(
 				'title' => $taskData['title'],
 				"taskData" => $taskData,
-				"employees" => $employees
+				"employees" => $employees,
+				"task_comments" => $taskComments
 			);
 			$this->page_loader("task_details",$data);
 		}else {
