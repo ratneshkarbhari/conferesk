@@ -31,10 +31,11 @@
                         <li><a class="waves-effect" href="<?php echo site_url("notices-mgt"); ?>">Notices</a></li>
                         <li><a class="waves-effect" href="<?php echo site_url("tasks-mgt"); ?>">Tasks</a></li>
                         <li><a class="waves-effect" href="<?php echo site_url("employee-mgt"); ?>">Employees</a></li>
+                        <li><a class="waves-effect" href="<?php echo site_url("manage-meetings"); ?>">Manage Meetings</a></li>
                         <?php else: ?>
                         <li><a class="waves-effect" href="<?php echo site_url("my-notices"); ?>">Notices</a></li>
                         <li><a class="waves-effect" href="<?php echo site_url("my-tasks"); ?>">Tasks</a></li>
-                        <li><a class="waves-effect" href="<?php echo site_url("test-meeting"); ?>">Test Meeting</a></li>
+
                         <?php endif; ?>
                     </ul>
                     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>

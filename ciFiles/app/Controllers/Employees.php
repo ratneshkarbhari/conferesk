@@ -9,7 +9,6 @@ class Employees extends BaseController
     public function create_employee_exe(){
         
         $session = session();
-
         $role = $session->get("role");
 
         if($role!='admin'){

@@ -81,6 +81,10 @@ $routes->get("edit-task/(:any)","PageLoader::edit_task/$1");
 
 $routes->post("task-file-delete-api","PageLoader::task_file_delete_api");
 
+$routes->get("manage-meetings","PageLoader::manage_meetings");
+$routes->get("add-new-meeting","PageLoader::add_new_meeting");
+
+$routes->post("create-meeting-exe","Meetings::create");
 
 /*
  * --------------------------------------------------------------------

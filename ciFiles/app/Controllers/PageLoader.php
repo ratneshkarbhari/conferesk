@@ -7,6 +7,7 @@ use App\Models\AuthModel;
 use App\Models\TaskModel;
 use App\Models\TaskCommentModel;
 use App\Models\EmployeeModel;
+use App\Models\MeetingModel;
 
 class PageLoader extends BaseController
 {
@@ -226,6 +227,40 @@ class PageLoader extends BaseController
 		}else {
 			return redirect()->to(site_url());
 		}
+	}
+
+	public function add_new_meeting($success="",$error=""){
+		$session = session();
+		$role = $session->get("role");
+		if ($role!="admin") {
+			return redirect()->to(site_url());
+		}
+		$employeeModel = new EmployeeModel();
+		$employees = $employeeModel->where("role!=","admin")->findAll();
+		$data = array(
+			"title" => "Add Meeting",
+			"success" => $success,
+			"error" => $error,
+			"employees" => $employees
+		);
+		$this->page_loader("add_meeting",$data);
+	}
+
+	public function manage_meetings($success="",$error=""){
+		$session = session();
+		$role = $session->get("role");
+		if ($role!="admin") {
+			return redirect()->to(site_url());
+		}
+		$meetingModel = new MeetingModel();
+		$meetingsFetched = $meetingModel->findAll();
+		$data = array(
+			"title" => "Manage Meetings",
+			"success" => $success,
+			"error" => $error,
+			"meetings" => $meetingsFetched
+		);
+		$this->page_loader("manage_meetings",$data);
 	}
 
 	public function test_meeting(){
