@@ -246,6 +246,21 @@ class PageLoader extends BaseController
 		$this->page_loader("add_meeting",$data);
 	}
 
+	public function meeting_page($public_id){
+		$session = session();
+		$role = $session->get("role");
+		if (!isset($role)) {
+			return redirect()->to(site_url());
+		}
+		$meetingModel = new MeetingModel();
+		$meetingData = $meetingModel->where("public_id",$public_id)->first();
+		$data = array(
+			"title" => "Meeting",
+			"meetingData" => $meetingData
+		);
+		$this->page_loader("meeting_page",$data);
+	}
+
 	public function manage_meetings($success="",$error=""){
 		$session = session();
 		$role = $session->get("role");

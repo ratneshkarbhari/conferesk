@@ -86,6 +86,8 @@ $routes->get("add-new-meeting","PageLoader::add_new_meeting");
 
 $routes->post("create-meeting-exe","Meetings::create");
 
+$routes->get("meeting/(:any)","PageLoader::meeting_page/$1");
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
